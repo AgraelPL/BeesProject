@@ -26,7 +26,6 @@ function setup() {
   population = new Population();
   lifeP = createP();
   target = createVector(width / 2, 50);
-
 }
 
 function draw() {
@@ -44,8 +43,8 @@ function draw() {
   }
   // Renders barrier for rockets
   fill(255);
-  rect(rx, ry, rw, rh);
+  //rect(rx, ry, rw, rh);
   // Renders target
   rectMode(CENTER);
-  rect(target.x, target.y, 50, 50);
+  rect(target.x, target.y, 20, 20);
 }

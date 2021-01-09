@@ -1,12 +1,7 @@
-// Daniel Shiffman
-// http://codingtra.in
-// http://patreon.com/codingtrain
-// Code for: https://youtu.be/bGz7mv2vD6g
 
-// Constructor function
 function Rocket(dna) {
     // Physics of rocket at current instance
-    this.pos = createVector(width / 2, height);
+    this.pos = createVector(width / 2, height - 100);
     this.vel = createVector();
     this.acc = createVector();
     // Checkes rocket has reached target
@@ -65,9 +60,9 @@ function Rocket(dna) {
       }
   
   
-      //applies the random vectors defined in dna to consecutive frames of rocket
+      
       this.applyForce(this.dna.genes[count]);
-      // if rocket has not got to goal and not crashed then update physics engine
+      
       if (!this.completed && !this.crashed) {
         this.vel.add(this.acc);
         this.pos.add(this.vel);
@@ -75,20 +70,15 @@ function Rocket(dna) {
         this.vel.limit(4);
       }
     }
-    // displays rocket to window
+   
     this.show = function() {
-      // push and pop allow's rotating and translation not to affect other objects
-      push();
-      //color customization of rockets
-      noStroke();
-      fill(255, 150);
-      //translate to the postion of rocket
-      translate(this.pos.x, this.pos.y);
-      //rotatates to the angle the rocket is pointing
-      rotate(this.vel.heading());
-      //creates a rectangle shape for rocket
-      rectMode(CENTER);
-      rect(0, 0, 25, 5);
+      
+      push();      
+      noStroke();      
+      translate(this.pos.x, this.pos.y);      
+      fill(255,255,100);
+      ellipseMode(CENTER);
+      ellipse(0, 0, 15, 15);
       pop();
     }
   
