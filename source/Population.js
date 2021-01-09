@@ -4,68 +4,68 @@
 // Code for: https://youtu.be/bGz7mv2vD6g
 
 function Population() {
-    // Array of rockets
-    this.rockets = [];
-    // Amount of rockets
-    this.popsize = 200;
-    // Amount parent rocket partners
+    //tablica bees
+    this.bees = [];
+    // wielkosc populacji
+    this.popsize = 1000;
+    
     this.matingpool = [];
   
-    // Associates a rocket to an array index
+    // dodanie bee do tablicy
     for (var i = 0; i < this.popsize; i++) {
-      this.rockets[i] = new Rocket();
+      this.bees[i] = new Bee();
     }
   
     this.evaluate = function() {
   
       var maxfit = 0;
-      // Iterate through all rockets and calcultes their fitness
+      // obliczanie fitness dla kazdej bee
       for (var i = 0; i < this.popsize; i++) {
-        // Calculates fitness
-        this.rockets[i].calcFitness();
-        // If current fitness is greater than max, then make max equal to current
-        if (this.rockets[i].fitness > maxfit) {
-          maxfit = this.rockets[i].fitness;
+        
+        this.bees[i].calcFitness();
+        
+        if (this.bees[i].fitness > maxfit) {
+          maxfit = this.bees[i].fitness;
         }
       }
-      // Normalises fitnesses
+      // Normalizacja
       for (var i = 0; i < this.popsize; i++) {
-        this.rockets[i].fitness /= maxfit;
+        this.bees[i].fitness /= maxfit;
       }
   
       this.matingpool = [];
-      // Take rockets fitness make in to scale of 1 to 100
-      // A rocket with high fitness will highly likely will be in the mating pool
+      // skalowanie fitness od 0 do 100
+      
       for (var i = 0; i < this.popsize; i++) {
-        var n = this.rockets[i].fitness * 100;
+        var n = this.bees[i].fitness * 100;
         for (var j = 0; j < n; j++) {
-          this.matingpool.push(this.rockets[i]);
+          this.matingpool.push(this.bees[i]);
         }
       }
     }
-    // Selects appropriate genes for child
+    // wybieranie genow dla kolejnej kazdej bee w nastepnej populacji
     this.selection = function() {
-      var newRockets = [];
-      for (var i = 0; i < this.rockets.length; i++) {
-        // Picks random dna
+      var newBees = [];
+      for (var i = 0; i < this.bees.length; i++) {
+        // wybieranie losowego dna
         var parentA = random(this.matingpool).dna;
         var parentB = random(this.matingpool).dna;
-        // Creates child by using crossover function
+        // tworzenie bee z losowym dna
         var child = parentA.crossover(parentB);
         child.mutation();
-        // Creates new rocket with child dna
-        newRockets[i] = new Rocket(child);
+        
+        newBees[i] = new Bee(child);
       }
-      // This instance of rockets are the new rockets
-      this.rockets = newRockets;
+      
+      this.bees = newBees;
     }
   
-    // Calls for update and show functions
+    // wyswietlenie nowych bee i update dna 
     this.run = function() {
       for (var i = 0; i < this.popsize; i++) {
-        this.rockets[i].update();
-        // Displays rockets to screen
-        this.rockets[i].show();
+        this.bees[i].update();
+        // wyswietlenie bee na ekranie
+        this.bees[i].show();
       }
     }
   }
