@@ -46,8 +46,8 @@ function Bee(dna) {
         this.completed = true;
         this.pos = target.copy();
       }
-      // Bees dotykają ekranu
-      if (this.pos.x > rx && this.pos.x < rx + rw && this.pos.y > ry && this.pos.y < ry + rh) {
+      //Bees dotykaja przeszkody
+      if (this.pos.x > rx - rw / 2 && this.pos.x < rx + rw / 2  && this.pos.y > ry && this.pos.y < ry + rh) {
         this.crashed = true;
       }
       // Bees dotykają ekranu

@@ -1,13 +1,10 @@
-// Daniel Shiffman
-// http://codingtra.in
-// http://patreon.com/codingtrain
-// Code for: https://youtu.be/bGz7mv2vD6g
+
 
 function Population() {
     //tablica bees
     this.bees = [];
     // wielkosc populacji
-    this.popsize = 1000;
+    this.popsize = 100;
     
     this.matingpool = [];
   
